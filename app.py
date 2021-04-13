@@ -15,7 +15,7 @@ MONTH_LIST = [0, 'January', 'February', 'March', 'April', 'May', 'June', 'July',
 
 def get_db_connection():
     """ Returns a connection to the database """
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect('project/database.db')
     conn.row_factory = sqlite3.Row
     return conn
 
