@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+    <h1>{% block title %}Income{% endblock %}</h1>
+
+    <div class="menu">
+        <ul class="menu-bar">
+            <li class="menu-item menu-search">
+                <form class="search-bar" method="post" action="">
+                    <select name="category-search" class="search-category">
+                        {% if selected_income_category == 0 %}
+                            <option value="0" selected>All Categories</option>
+                        {% else %}
+                            <option value="0">All Categories</option>
+                        {% endif %}
+                        {% for category in income_categories %}
+                            {% if selected_income_category == category['tag_id'] %}
+                                <option value="{{ category['tag_id'] }}" selected>{{ category['name'] }}</option>
+                            {% else %}
+                                <option value="{{ category['tag_id'] }}">{{ category['name'] }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    <select name="date-search" class="search-date">
+                        {% if selected_income_date == 0 %}
+                            <option value="0" selected>All Years</option>
+                        {% else %}
+                            <option value="0">All Years</option>
+                        {% endif %}
+                        {% for year in income_items %}
+                            {% if selected_income_date == year[0]['income_year'] %}
+                                <option value="{{ year[0]['income_year'] }}" selected>{{ year[0]['income_year'] }}</option>
+                            {% else %}
+                                <option value="{{ year[0]['income_year'] }}">{{ year[0]['income_year'] }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    <input type="text" placeholder="Search..." name="search-by" class="search-item">
+                    <button type="submit" class="search-button"><i class="material-icons">search</i></button>
+                </form>
+            </li>
+        </ul>
+    </div>
+
+    <div class="income-menu">
+        <ul class="menu-bar menu-bar-items">
+            <li class="menu-item menu-add">
+                <a class="menu-item-link" href="{{ url_for('income_add_item') }}"><button class="menu-button">Add Income Item</button></a>
+            </li>
+            <li class="menu-item menu-edit">
+                <a class="menu-item-link" href="{{ url_for('income_edit_categories') }}"><button class="menu-button">Edit Categories</button></a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="income">
+        {% if not income_items_filtered %}
+            <div class="display-message">No search results</div>
+        {% endif %}
+        {% for year in income_items_filtered %}
+            <div class="income-year">
+                {{ year[0]['income_year'] }}
+            </div>
+            <div class="income-items">
+                <table>
+                    <tr>
+                        <th class="th-not-edit th-month">Month</th>
+                        <th class="th-not-edit th-day">Day</th>
+                        <th class="th-not-edit th-name">Name</th>
+                        <th class="th-not-edit th-amount">Amount</th>
+                        <th class="th-not-edit th-categories">Categories</th>
+                        <th class="th-edit"> </th>
+                    </tr>
+                    {% for item in year %}
+                        <tr>
+                            <td class="td-odd">{{ month_list[item['income_month']] }}</td>
+                            <td class="td-even">{{ item['income_day'] }}</td>
+                            <td class="td-odd">{{ item['name'] }}</td>
+                            <td class="td-even">${{ item['amount'] }}</td>
+                            <td class="td-odd">
+                                {% for connection in income_connections %}
+                                    {% if connection['income_id'] == item['income_id'] %}
+                                        {% for category in income_categories %}
+                                            {% if category['tag_id'] == connection['tag_id'] %}
+                                                <u>{{ category['name'] }}</u>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td class="td-even"><a href="{{ url_for('income_edit_item', income_id=item['income_id']) }}"><button class="hover-edit-item form-button">Edit</button></a></td>
+                        </tr>
+                {% endfor %}
+                </table>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

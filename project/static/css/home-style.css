@@ -1,0 +1,30 @@
+* {
+    font-family: "Tahoma";
+    box-sizing: border-box;
+}
+
+.alert-box {
+    margin: 10px;
+}
+
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+}
+
+.back-to-top {
+    padding: 10px 12px;
+    border-radius: 5px;
+    border: none;
+    background-color: #C5E4FA;
+}
+
+.back-to-top:hover {
+    background-color: #B1CBDE;
+    cursor: pointer;
+}
+
+.change-reminder-quantity {
+    max-width: 50px;
+}

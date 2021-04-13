@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="{{ url_for('static', filename= 'css/home-style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename= 'css/inventory-style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename= 'css/income-style.css') }}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+        <title>{% block title %} {% endblock %}</title>
+    </head>
+    <body>
+
+        <div>
+            <ul class="nav-bar">
+                <li class="nav-list"><a href="{{ url_for('home') }}">Home</a></li>
+                <li class="nav-list"><a href="{{ url_for('inventory') }}">Inventory</a></li>
+                <li class="nav-list"><a href="{{ url_for('materials') }}">Materials</a></li>
+                <li class="nav-list"><a href="{{ url_for('income') }}">Income</a></li>
+                <li class="nav-list"><a href="{{ url_for('expenses') }}">Expenses</a></li>
+                <li class="nav-list"><a href="{{ url_for('settings') }}">Settings</a></li>
+            </ul>
+        </div>
+
+
+        <div class="container">
+            {% for message in get_flashed_messages() %}
+                <div class="alert alert-danger">{{ message }}</div>
+            {% endfor %}
+            {% block content %} {% endblock %}
+        </div>
+
+        <div id="back-to-top">
+            <a href="">
+                <button class="back-to-top">^</button>
+            </a>
+        </div>
+
+    </body>
+</html>

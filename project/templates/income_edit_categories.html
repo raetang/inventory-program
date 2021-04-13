@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="content">
+
+    <h2>{% block title %}Edit Income Categories{% endblock %}</h2>
+
+    <form method="post" action="">
+        <input type="text" placeholder="New Category" name="new_category" class="add-category">
+        <button type="submit" class="form-button">+</button>
+    </form>
+
+    <div class="categories">
+        {% for category in income_categories %}
+            <div class="category-information">
+                <div class="category-name column">{{ category['name'] }}</div>
+                <a href="{{ url_for('income_edit_category', category_id=category['tag_id']) }}" class="category-edit column"><button class="form-button">Edit</button></a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="cancel-button">
+        <a href="{{url_for('income')}}"><button class="form-button">Back</button></a>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>{% block title %}Expenses{% endblock %}</h1>
+
+    <div class="menu">
+        <ul class="menu-bar">
+            <li class="menu-item menu-search">
+                <form class="search-bar" method="post" action="">
+                    <select name="category-search" class="search-category">
+                        {% if selected_expenses_category == 0 %}
+                            <option value="0" selected>All Categories</option>
+                        {% else %}
+                            <option value="0">All Categories</option>
+                        {% endif %}
+                        {% for category in expenses_categories %}
+                            {% if selected_expenses_category == category['tag_id'] %}
+                                <option value="{{ category['tag_id'] }}" selected>{{ category['name'] }}</option>
+                            {% else %}
+                                <option value="{{ category['tag_id'] }}">{{ category['name'] }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    <select name="date-search" class="search-date">
+                        {% if selected_expenses_date == 0 %}
+                            <option value="0" selected>All Years</option>
+                        {% else %}
+                            <option value="0">All Years</option>
+                        {% endif %}
+                        {% for year in expenses_items %}
+                            {% if selected_expenses_date == year[0]['expense_year'] %}
+                                <option value="{{ year[0]['expense_year'] }}" selected>{{ year[0]['expense_year'] }}</option>
+                            {% else %}
+                                <option value="{{ year[0]['expense_year'] }}">{{ year[0]['expense_year'] }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    <input type="text" placeholder="Search..." name="search-by" class="search-item">
+                    <button type="submit" class="search-button"><i class="material-icons">search</i></button>
+                </form>
+            </li>
+        </ul>
+    </div>
+
+    <div class="expenses-menu">
+        <ul class="menu-bar menu-bar-items">
+            <li class="menu-item menu-add">
+                <a class="menu-item-link" href="{{ url_for('expenses_add_item') }}"><button class="menu-button">Add Expense</button></a>
+            </li>
+            <li class="menu-item menu-edit">
+                <a class="menu-item-link" href="{{ url_for('expenses_edit_categories') }}"><button class="menu-button">Edit Categories</button></a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="expenses">
+        {% if not expenses_items_filtered %}
+            <div class="display-message">No search results</div>
+        {% endif %}
+        {% for year in expenses_items_filtered %}
+            <div class="expense-year">
+                {{ year[0]['expense_year'] }}
+            </div>
+            <div class="expenses-items">
+                <table>
+                    <tr>
+                        <th class="th-not-edit th-month">Month</th>
+                        <th class="th-not-edit th-day">Day</th>
+                        <th class="th-not-edit th-name">Name</th>
+                        <th class="th-not-edit th-amount">Amount</th>
+                        <th class="th-not-edit th-categories">Categories</th>
+                        <th class="th-edit"> </th>
+                    </tr>
+                    {% for item in year %}
+                        <tr>
+                            <td class="td-odd">{{ month_list[item['expense_month']] }}</td>
+                            <td class="td-even">{{ item['expense_day'] }}</td>
+                            <td class="td-odd">{{ item['name'] }}</td>
+                            <td class="td-even">${{ item['amount'] }}</td>
+                            <td class="td-odd">
+                                {% for connection in expenses_connections %}
+                                    {% if connection['expense_id'] == item['expense_id'] %}
+                                        {% for category in expenses_categories %}
+                                            {% if category['tag_id'] == connection['tag_id'] %}
+                                                <u>{{ category['name'] }}</u>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td class="td-even"><a href="{{ url_for('expenses_edit_item', expense_id=item['expense_id']) }}"><button class="hover-edit-item form-button">Edit</button></a></td>
+                        </tr>
+                {% endfor %}
+                </table>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

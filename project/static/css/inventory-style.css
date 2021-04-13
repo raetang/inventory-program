@@ -1,0 +1,266 @@
+.nav-bar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: sticky;
+}
+
+.nav-list {
+    float: left;
+}
+
+.nav-list a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.nav-list a:hover {
+    background-color: #00479E;
+    color: white;
+}
+
+{
+    box-sizing: border-box;
+}
+
+h1 {
+    border: 2 px solid;
+    text-align: center;
+}
+
+.content {
+    max-width: 500px;
+    margin: auto;
+}
+
+.menu {
+    padding: 10px;
+    margin: 5px;
+}
+
+.menu-bar {
+    list-style-type: none;
+}
+
+.menu-bar-items {
+    float: right;
+}
+
+.menu-item {
+    display: inline;
+}
+
+.menu-button {
+    background-color: #00479E;
+    padding: 14px 16px;
+    margin-right: 10px;
+    border: none;
+    color: white;
+    font-size: 16px;
+}
+
+.menu-button:hover {
+    background-color: #083873;
+    cursor: pointer;
+}
+
+.search-category {
+    padding: 14px 16px;
+    border: none;
+    background-color: #E0E0E0;
+    font-size: 16px;
+    float: left;
+}
+
+.search-date {
+    padding: 14px 16px;
+    border: none;
+    background-color: #E0E0E0;
+    font-size: 16px;
+    float: left;
+}
+
+.search-sort {
+    padding: 14px 16px;
+    border: none;
+    background-color: #E0E0E0;
+    font-size: 16px;
+    float: left;
+}
+
+.search-item {
+    width: 60%;
+    padding: 15px 16px;
+    font-size: 16px;
+    border: none;
+    float: left;
+    background: #f1f1f1;
+}
+
+.search-button {
+    float: left;
+    padding: 10px;
+    background: #2C81E8;
+    color: white;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+
+i {
+    font-size: 11px;
+}
+
+.sort-button {
+    background-color: #E0E0E0;
+    color: black;
+    padding: 14px 16px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    display: inline-block;
+}
+
+.drop-button {
+}
+
+.drop {
+}
+
+.clicked {
+    background-color: #B0B0B0;
+}
+
+.sort-button:hover, .sort-button:focus {
+    background-color: #B0B0B0;
+}
+
+.sort-div {
+    position: absolute;
+    display: inline;
+}
+
+.sort-box .sort-button {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.sort-box {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.sort-box .sort-button:hover {
+    background-color: #B0B0B0
+}
+
+.show {
+    display:block;
+}
+
+.inventory-menu {
+    margin-bottom: 100px;
+}
+
+#inventory {
+    padding: 10px;
+}
+
+.materials-menu {
+    margin-bottom: 100px;
+}
+
+#materials {
+    padding: 10px;
+}
+
+.item {
+    padding: 10px 20px;
+    border: none;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: #9EBADB;
+    position: relative;
+}
+
+.quantity-button {
+    padding: 3px 5px;
+    color: white;
+    background-color: #00479E;
+    border: none;
+    border-radius: 5px;
+    width: 20px;
+}
+
+.quantity-button:hover {
+    background-color: #083873;
+    cursor: pointer;
+}
+
+.submit-button {
+    float: left;
+}
+
+.form-group {
+    margin: 8px 0px;
+}
+
+.form-button {
+    padding: 5px 8px;
+    margin-right: 10px;
+    color: white;
+    background-color: #00479E;
+    border: none;
+}
+
+.form-button:hover {
+    background-color: #083873;
+    cursor: pointer;
+}
+
+.edit-button {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+.column {
+    float: left;
+}
+
+.category-name {
+    width: 90%;
+}
+
+.category-edit {
+    width: 10%;
+}
+
+.category-information {
+    border: 1px solid gray;
+    padding: 20px;
+    margin: 5px 0px;
+    width: 100%;
+}
+
+.category-information:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.add-category {
+    padding: 10px;
+    width: 90%;
+}

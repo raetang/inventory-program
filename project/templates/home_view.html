@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="home-page">
+    <div class="alert-box">
+        <h1>Inventory Running Low</h1>
+        <div class="reminders">
+            {% for item in inventory_reminders %}
+                <div class="item">
+                    <div class="item-name"><b>{{ item['name'] }}</b></div>
+                    <span class="item-info">
+                        Quantity:
+                        <span class="item-info quantity">{{ item['quantity'] }}</span>
+                    </span>
+                    <span> &#8226; </span>
+                    <span class="item-info">Cost: ${{ item['cost'] }}</span>
+                    <span> &#8226; </span>
+                    <span class="item-info item-categories">
+                        Categories:
+                        {% for connection in inventory_connections %}
+                            {% if connection['item_id'] == item['item_id'] %}
+                                {% for category in inventory_categories %}
+                                    {% if category['tag_id'] == connection['tag_id'] %}
+                                        <u>{{ category['name'] }}</u>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    </span>
+                    <a href="{{ url_for('home_inventory_edit_item', item_id=item['item_id']) }}"><button class="form-button edit-button">Edit</button></a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="alert-box">
+        <h1>Materials Running Low</h1>
+        <div class="reminders">
+            {% for item in materials_reminders %}
+                <div class="item">
+                    <div class="item-name"><b>{{ item['name'] }}</b></div>
+                    <span class="item-info">
+                        Quantity:
+                        <span class="item-info quantity">{{ item['quantity'] }}</span>
+                    </span>
+                    <span> &#8226; </span>
+                    <span class="item-info item-categories">
+                        Categories:
+                        {% for connection in materials_connections %}
+                            {% if connection['material_id'] == item['material_id'] %}
+                                {% for category in materials_categories %}
+                                    {% if category['tag_id'] == connection['tag_id'] %}
+                                        <u>{{ category['name'] }}</u>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    </span>
+                    <a href="{{ url_for('home_materials_edit_item', material_id=item['material_id']) }}"><button class="form-button edit-button">Edit</button></a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

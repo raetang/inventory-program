@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="content">
+
+    <h1>{% block title %}Settings{% endblock %}</h1>
+
+    <div class="manual-button">
+        <a href="{{url_for('settings_manual')}}"><button class="form-button">Read Manual</button></a>
+    </div>
+
+    <hr>
+
+    <form method="post" action="">
+        <label for="reminder-quantity">Set quantity for inventory and materials reminders:</label>
+        <input type="text" placeholder="Reminder quantity" value="{{ reminder_quantity['quantity'] }}" name="reminder-quantity" class="change-reminder-quantity">
+        <div><button type="submit" class="form-button">Save</button></div>
+    </form>
+
+
+</div>
+
+{% endblock %}

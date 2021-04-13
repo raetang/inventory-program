@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>{% block title %}Store Materials{% endblock %}</h1>
+
+    <div class="menu">
+            <ul class="menu-bar">
+                <li class="menu-item menu-search">
+                    <form class="search-bar" method="post" action="">
+                        <select name="category-search" class="search-category">
+                            {% if selected_materials_category == 0 %}
+                                <option value="0" selected>All</option>
+                            {% else %}
+                                <option value="0">All</option>
+                            {% endif %}
+                            {% for category in materials_categories %}
+                                {% if selected_materials_category == category['tag_id'] %}
+                                    <option value="{{ category['tag_id'] }}" selected>{{ category['name'] }}</option>
+                                {% else %}
+                                    <option value="{{ category['tag_id'] }}">{{ category['name'] }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                        <select name="sort-search" class="search-sort">
+                            {% if sort_order == 0 %}
+                                <option value="0" selected>Sort</option>
+                            {% else %}
+                                <option value="0">Sort</option>
+                            {% endif %}
+                            {% if sort_order == 1 %}
+                                <option value="1" selected>Ascending Quantity</option>
+                            {% else %}
+                                <option value="1">Ascending Quantity</option>
+                            {% endif %}
+                            {% if sort_order == 2 %}
+                                <option value="2" selected>Descending Quantity</option>
+                            {% else %}
+                                <option value="2">Descending Quantity</option>
+                            {% endif %}
+                        </select>
+                        <input type="text" placeholder="Search..." name="search-by" class="search-item">
+                        <button type="submit" class="search-button"><i class="material-icons">search</i></button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
+        <div class="materials-menu">
+            <ul class="menu-bar menu-bar-items">
+                <li class="menu-item menu-add">
+                    <a class="menu-item-link" href="{{url_for('materials_add_item')}}"><button class="menu-button">Add Item</button></a>
+                </li>
+                <li class="menu-item menu-edit">
+                    <a class="menu-item-link" href="{{url_for('materials_edit_categories')}}"><button class="menu-button">Edit Categories</button></a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="materials">
+            {% if not materials_items %}
+                <div class="display-message">No search results</div>
+            {% endif %}
+            {% for item in materials_items %}
+                <div class="item">
+                    <div class="item-name"><b>{{ item['name'] }}</b></div>
+                    <span class="item-info">
+                        Quantity:
+                        <button class="decrease-button quantity-button" value="{{ item['material_id'] }}">-</button>
+                        <span class="item-info quantity">{{ item['quantity'] }}</span>
+                        <button class="increase-button quantity-button" value="{{ item['material_id'] }}">+</button>
+                    </span>
+                    <span> &#8226; </span>
+                    <span class="item-info item-categories">
+                        Categories:
+                        {% for connection in materials_connections %}
+                            {% if connection['material_id'] == item['material_id'] %}
+                                {% for category in materials_categories %}
+                                    {% if category['tag_id'] == connection['tag_id'] %}
+                                        <u>{{ category['name'] }}</u>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    </span>
+                    <a href="{{ url_for('materials_edit_item', material_id=item['material_id']) }}"><button class="form-button edit-button">Edit</button></a>
+                </div>
+            {% endfor %}
+        </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='materials.js') }}"></script>
+
+{% endblock %}

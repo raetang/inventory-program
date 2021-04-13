@@ -1,0 +1,80 @@
+.hover-edit-item {
+    visibility: hidden;
+}
+
+tr:hover .hover-edit-item{
+    visibility: visible;
+}
+
+.income-menu {
+    margin-bottom: 100px;
+}
+
+#income {
+    padding: 10px;
+}
+
+.income-year {
+    text-align: left;
+    padding-left: 48%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: bold;
+}
+
+.expense-year {
+    text-align: left;
+    padding-left: 48%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: bold;
+}
+
+.expenses-menu {
+    margin-bottom: 100px;
+}
+
+#expenses {
+    padding: 10px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    text-align: left;
+    padding: 3px;
+    background-color: #9EBADB;
+}
+
+.th-month {
+    wdith: 10%;
+}
+
+.th-day {
+    width: 5%;
+}
+
+.th-name {
+    width: 20%;
+}
+
+.th-amount {
+    width: 10%;
+}
+
+.th-categories {
+    width: 50%;
+}
+
+.th-edit {
+    width: 5%;
+}
+
+td {
+    text-align: left;
+    padding: 3px;
+}
+

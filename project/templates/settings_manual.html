@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="content">
+
+    <h1>{% block title %}Manual{% endblock %}</h1>
+
+    <div class="close-button">
+        <a href="{{url_for('settings')}}"><button class="form-button">Back</button></a>
+    </div>
+
+    <div>
+        <h3>Home Page</h3>
+        The home page displays a list of all inventory and material items that currently have a quantity below the reminder threshold. Listing these items on the home page allows you to easily see which items need to be restocked. The reminder threshold can be customized on the Settings page.
+        <h3>Categories</h3>
+        Each page (Inventory, Materials, Income, Expenses) has its own set of categories that can be customized to fit your shop's needs. This makes organization and searching for an item easier. Items do not have to belong to a category, but can also belong to multiple categories. The categories can be edited by clicking the "Edit Categories" button on each page where new categories can be created.
+        <h3>Items</h3>
+        Each page (Inventory, Materials, Income, Expenses) displays a list of items. New items can be added on each page by clicking the "Add Item" button on each page. Individual items can also be edited.
+        <h3>Search</h3>
+        Each page (Inventory, Materials, Income, Expenses) contains a search bar at the top to allow you to easily find items. You also search within categories. The Inventory and Materials pages allow additional sorting of the search results. The Income and Expenses pages allow you to narrow searchs to a specific year. The phrase entered in the search bar will be used to find items with names containing the phrase. Pressing the search button without entering a phrase will return all items, according to selected categories, sort, and/or date.
+        <h3>Inventory</h3>
+        The Inventory page displays a list of all inventory items that are currently in the store (i.e. items that the store is selling). It also displays the price and quantity of the item, as well as all categories the item belongs to. Each item can be edited by clicking the "Edit" button, but the item's quantity can easily be increased or decreased by pressing the "-" or "+" buttons beside the item's displayed quantity.
+        <h3>Materials</h3>
+        The Materials page displays a list of all materials that are currently in the store (i.e. items that the store is using to create products, or items used in shipping products). It also displays the quantity of the item, as well as all categories the item belongs to. Each item can be edited by clicking the "Edit" button, but the item's quantity can easily be increased or decreased by pressing the "-" or "+" buttons beside the item's displayed quantity.
+        <h3>Income and Expenses</h3>
+        The Income and Expenses pages list the income and expenses organized by year. Each entry also lists the date, amount, and categories associated with the item. Each individual entry has an "Edit" button that can be found on the right of the entry by hovering over the entry.
+    </div>
+
+
+</div>
+
+{% endblock %}
