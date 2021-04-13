@@ -22,12 +22,14 @@ def get_db_connection():
 # Home Page Helper Functions
 
 def get_inventory_reminders():
+    """ Returns a list of inventory items with quantity less than or equal to reminder threshold """
     conn = get_db_connection()
     inventory_reminder = conn.execute('SELECT * FROM store_inventory WHERE quantity <= (SELECT quantity FROM settings WHERE name = ?)', ("Reminder Quantity", )).fetchall()
     conn.close()
     return inventory_reminder
 
 def get_materials_reminders():
+    """ Returns a list of materials with quantity less than or equal to reminder threshold """
     conn = get_db_connection()
     materials_reminder = conn.execute('SELECT * FROM store_materials WHERE quantity <= (SELECT quantity FROM settings WHERE name = ?)', ("Reminder Quantity", )).fetchall()
     conn.close()
