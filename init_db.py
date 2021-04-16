@@ -29,6 +29,15 @@ cur.execute("INSERT INTO store_inventory (name, quantity, cost) VALUES (?, ?, ?)
 cur.execute("INSERT INTO store_inventory (name, quantity, cost) VALUES (?, ?, ?)",
             ('Starry Plush', 30, 45.99)
             )
+cur.execute("INSERT INTO store_inventory (name, quantity, cost) VALUES (?, ?, ?)",
+            ('Starry Notepad', 5, 8.99)
+            )
+cur.execute("INSERT INTO store_inventory (name, quantity, cost) VALUES (?, ?, ?)",
+            ('Moon Notepad', 8, 8.99)
+            )
+cur.execute("INSERT INTO store_inventory (name, quantity, cost) VALUES (?, ?, ?)",
+            ('Flower Set', 18, 30.00)
+            )
 
 cur.execute("INSERT INTO inventory_categories (name) VALUES (?)", ('Pin', ))
 cur.execute("INSERT INTO inventory_categories (name) VALUES (?)", ('Patch', ))
@@ -39,6 +48,10 @@ cur.execute("INSERT INTO inventory_to_category (tag_id, item_id) VALUES (?, ?)",
 cur.execute("INSERT INTO inventory_to_category (tag_id, item_id) VALUES (?, ?)", (1, 3))
 cur.execute("INSERT INTO inventory_to_category (tag_id, item_id) VALUES (?, ?)", (2, 4))
 cur.execute("INSERT INTO inventory_to_category (tag_id, item_id) VALUES (?, ?)", (3, 2))
+cur.execute("INSERT INTO inventory_to_category (tag_id, item_id) VALUES (?, ?)", (4, 6))
+cur.execute("INSERT INTO inventory_to_category (tag_id, item_id) VALUES (?, ?)", (4, 7))
+cur.execute("INSERT INTO inventory_to_category (tag_id, item_id) VALUES (?, ?)", (1, 8))
+cur.execute("INSERT INTO inventory_to_category (tag_id, item_id) VALUES (?, ?)", (3, 8))
 
 # Materials
 
@@ -51,10 +64,14 @@ cur.execute("INSERT INTO store_materials (name, quantity) VALUES (?, ?)",
 cur.execute("INSERT INTO store_materials (name, quantity) VALUES (?, ?)",
             ('Stamps', 32)
             )
+cur.execute("INSERT INTO store_materials (name, quantity) VALUES (?, ?)",
+            ('Envelopes', 3)
+            )
 
 cur.execute("INSERT INTO materials_categories (name) VALUES(?)", ('Mailing', ))
 
 cur.execute("INSERT INTO material_to_category (tag_id, material_id) VALUES (?, ?)", (1, 3))
+cur.execute("INSERT INTO material_to_category (tag_id, material_id) VALUES (?, ?)", (1, 4))
 
 # Income
 
